@@ -27,7 +27,7 @@ namespace Tools {
             FileManager.createDirectory ( this.dynamicPath, dirYear );//C:\logs\projectname\\year
             this.dynamicPath += "\\" + dirYear;
 
-            dirMonth = new DateTime ().ToString ( "MMM", CultureInfo.InvariantCulture );
+            dirMonth = DateTime.UtcNow.ToString ( "MMM", CultureInfo.InvariantCulture );
             FileManager.createDirectory ( this.dynamicPath, dirMonth );//C:\logs\projectname\\year\\month
             this.dynamicPath += "\\" + dirMonth;
 
@@ -82,6 +82,7 @@ namespace Tools {
                 Log = hour + ":" + minute + ":" + second + ":" + milisecond + "\t" + "\t" + Log;
                 System.IO.StreamWriter wLog = new System.IO.StreamWriter ( this.dynamicPath + String.Format ( @"\{0}.txt",
                     filename ), true );
+                Console.WriteLine ( Log );
                 wLog.WriteLine ( Log );
                 wLog.Close ();
             } catch ( Exception ex ) {
@@ -100,6 +101,7 @@ namespace Tools {
                 System.IO.StreamWriter wLog = new System.IO.StreamWriter ( this.dynamicPath + String.Format ( @"\{0}.txt",
                     filename + "_exception_" ), true );
                 wLog.WriteLine ( Log );
+                Console.WriteLine ( Log );
                 wLog.Close ();
             } catch ( Exception ex ) {
                 ex.ToString ();
