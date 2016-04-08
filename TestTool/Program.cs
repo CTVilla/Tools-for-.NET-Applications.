@@ -10,6 +10,7 @@ namespace TestTool {
         static void Main ( string [ ] args ) {
             Logger.getInstance ( "Tools" ).d ( "Main", "hola mundo" );
             Console.ReadKey ();
+            Logger.getInstance ( "Tools" ).e ( "Main", new Exception () );
         }
     }
 }

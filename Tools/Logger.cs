@@ -63,6 +63,11 @@ namespace Tools {
             writeLog ( log );
         }
 
+        public void q ( String identifier, String message ) {
+            String log = "q\t" + identifier + "\t\t" + message;
+            writeLog ( log );
+        }
+
         public void w ( String identifier, String message ) {
             String log = "w\t" + identifier + "\t\t" + message;
             writeLog ( log );
@@ -83,6 +88,22 @@ namespace Tools {
                 System.IO.StreamWriter wLog = new System.IO.StreamWriter ( this.dynamicPath + String.Format ( @"\{0}.txt",
                     filename ), true );
                 Console.WriteLine ( Log );
+                wLog.WriteLine ( Log );
+                wLog.Close ();
+            } catch ( Exception ex ) {
+                ex.ToString ();
+            }
+        }
+
+        private void writeQuery ( string Log ) {
+            try {
+                String hour = ( DateTime.Now.Hour < 10 ) ? "0" + DateTime.Now.Hour : "" + DateTime.Now.Hour;
+                String minute = ( DateTime.Now.Minute < 10 ) ? "0" + DateTime.Now.Minute : "" + DateTime.Now.Minute;
+                String second = ( DateTime.Now.Second < 10 ) ? "0" + DateTime.Now.Second : "" + DateTime.Now.Second;
+                String milisecond = ( DateTime.Now.Millisecond < 10 ) ? "00" + DateTime.Now.Second : ( ( DateTime.Now.Millisecond < 100 ) ? "0" + DateTime.Now.Second : "" + DateTime.Now.Second );
+                Log = hour + minute + second + milisecond + "\t" + "\t" + Log;
+                System.IO.StreamWriter wLog = new System.IO.StreamWriter ( dynamicPath + String.Format ( @"\{0}.txt",
+                    filename + "_query" ), true );
                 wLog.WriteLine ( Log );
                 wLog.Close ();
             } catch ( Exception ex ) {
